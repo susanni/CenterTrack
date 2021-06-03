@@ -254,6 +254,16 @@ class opts(object):
     self.parser.add_argument('--custom_dataset_img_path', default='')
     self.parser.add_argument('--custom_dataset_ann_path', default='')
 
+    # ROS
+    self.parser.add_argument('--ros', action='store_true',
+                             help='If ROS implementation.')
+    self.parser.add_argument('--input_image_topic', default='/CenterTrack/input_image', type=str,
+                             help='Topic for input image publisher.')
+    self.parser.add_argument('--output_image_topic', default='/CenterTrack/output_image', type=str,
+                                 help='Topic for output image publisher.')
+    self.parser.add_argument('--track_output_topic', default='/CenterTrack/track_output', type=str,
+                             help='Topic for CenterTrack object tracking output.')
+
   def parse(self, args=''):
     if args == '':
       opt = self.parser.parse_args()
