@@ -9,9 +9,14 @@ export CENTERTRACK_IMAGE_ID=$(docker images --filter=reference=centertrack-ros -
 
 # Mount directory that contains CenterTrack models as a volume.
 # i.e. My models are located at /home/swarm/unreal_ssd/CenterTrack
+# -v:         mounts local directories as volumes in the container so changes in local directories
+#             are reflected in the container and vice versa
+# --net host: container on same network as local machine
+# --env:      for displaying GUIs from the container
 docker run -v /home/swarm/unreal_ssd/CenterTrack:/CenterTrackModels \
            -v /home/swarm/vision_ws/src/CenterTrack:/CenterTrack \
            -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+           --net host \
            --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" \
            -it $CENTERTRACK_IMAGE_ID bash
 
@@ -30,6 +35,7 @@ docker exec -it $CENTERTRACK_CONTAINER_ID /bin/bash
 # Inside Docker container, run:
 sourceros
 symlink  # Only need to run this once !!
+# Make sure env variables ROS_MASTER_URI and ROS_IP are the desired addresses.
 ```
 NOTES:
 * WARNING: xhost [not the safest](http://wiki.ros.org/docker/Tutorials/GUI#The_simple_way).
