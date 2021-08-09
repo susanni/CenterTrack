@@ -173,6 +173,7 @@ class CenterTrackNode():
 
     def image_callback(self, color_msg, depth_msg):
         start_time = time.time()
+        print("START:", start_time, '-- image time:', self.get_time(color_msg.header), '-- diff:', start_time - self.get_time(color_msg.header))
         self.im_count += 1
         # if not self.im_count%2 == 0:
         #     return

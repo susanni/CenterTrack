@@ -259,6 +259,8 @@ class opts(object):
                              help='If ROS implementation.')
     self.parser.add_argument('--input_image_topic', default='/camera/color/image_raw/compressed', type=str,
                              help='Topic for input image subscriber.')
+    self.parser.add_argument('--input_depth_topic', default='/camera_d455/aligned_depth_to_color/image_raw', type=str,
+                             help='Topic for input depth image subscriber.')
     self.parser.add_argument('--output_image_topic', default='/CenterTrack/output_image', type=str,
                                  help='Topic for output image publisher.')
     self.parser.add_argument('--track_output_topic', default='/CenterTrack/track_output', type=str,
